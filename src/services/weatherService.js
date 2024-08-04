@@ -1,3 +1,21 @@
+/**
+ * Módulo de API del clima
+ * 
+ * Proporciona funciones para obtener datos meteorológicos de la API de OpenWeatherMap, incluyendo el clima actual, pronósticos y el índice UV. Incluye utilidades para formatear fechas, traducir descripciones y manejar íconos meteorológicos.
+ * 
+ * Funciones:
+ * - getWeatherData: Obtiene datos meteorológicos de la API.
+ * - getUVIndex: Obtiene el índice UV de la API.
+ * - iconUrlFromCode: Genera una URL para el ícono del clima.
+ * - capitalizeFirstLetter: Capitaliza la primera letra de una cadena.
+ * - formatToLocalTime: Formatea la hora en tiempo local.
+ * - translateDescription: Traduce descripciones del clima a español.
+ * - formatCurrent: Formatea los datos del clima actual.
+ * - formatForecastWeather: Formatea los datos del pronóstico del clima.
+ * - getFormattedWeatherData: Obtiene y formatea los datos del clima y pronóstico.
+ */
+
+
 import { DateTime, Settings } from "luxon";
 
 const API_KEY = '365fa8e66d8f81df5914fd6a5ea99d5c';
@@ -33,9 +51,14 @@ const getUVIndex = (lat, lon) => {
 
 const iconUrlFromCode = (icon) => `http://openweathermap.org/img/wn/${icon}@2x.png`;
 
+const capitalizeFirstLetter = (string) => {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+};
+
 const formatToLocalTime = (secs, offset, format = "cccc, dd LLL yyyy' | Hora local: 'hh:mm a") => {
   const dateTime = DateTime.fromSeconds(secs).setZone(`UTC${offset / 3600}`);
-  return dateTime.toFormat(format);
+  const formattedDate = dateTime.toFormat(format);
+  return capitalizeFirstLetter(formattedDate);
 };
 
 const weatherDescriptions = {

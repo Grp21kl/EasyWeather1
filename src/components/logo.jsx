@@ -5,7 +5,7 @@ const YourComponent = () => {
   return (
     <div>
       <img src="sun.png" alt="Logo" />
-      {/* Otros elementos de tu componente */}
+    
     </div>
   );
 };

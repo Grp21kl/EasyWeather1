@@ -1,9 +1,11 @@
+/**
+ * TempAndDetails Component
+ * 
+ * Muestra los detalles del clima actual, incluyendo sensación térmica, humedad, viento, amanecer, atardecer y temperaturas máxima y mínima.
+
+ * - weather (object): Objeto que contiene detalles del clima, íconos, temperatura, humedad, viento, amanecer, atardecer y temperaturas mínima y máxima.
+ */
 import React from 'react';
-import { FaThermometerEmpty } from 'react-icons/fa';
-import { BiSolidDropletHalf } from 'react-icons/bi';
-import { FiWind } from 'react-icons/fi';
-import { GiSunrise, GiSunset } from 'react-icons/gi';
-import { MdKeyboardArrowUp, MdKeyboardArrowDown } from 'react-icons/md';
 
 const TempAndDetails = ({
   weather: {
@@ -25,8 +27,8 @@ const TempAndDetails = ({
       Icon: () => (
         <img
           src="/icons/thermometer.svg"
-          alt="Humidity Icon"
-          style={{ width: '50px', height: 'auto' }} 
+          alt="Sensación Térmica"
+          className="w-13 h-20"
         />
       ),
       title: 'Sensación Térmica',
@@ -37,8 +39,8 @@ const TempAndDetails = ({
       Icon: () => (
         <img
           src="/icons/humidity.svg"
-          alt="Humidity Icon"
-          style={{ width: '50px', height: 'auto' }} 
+          alt="Humedad"
+          className="w-13 h-20"
         />
       ),
       title: 'Humedad',
@@ -49,8 +51,8 @@ const TempAndDetails = ({
       Icon: () => (
         <img
           src="/icons/wind-beaufort-1.svg"
-          alt="Wind Icon"
-          style={{ width: '50px', height: 'auto' }} 
+          alt="Viento"
+          className="w-13 h-20"
         />
       ),
       title: 'Viento',
@@ -64,8 +66,8 @@ const TempAndDetails = ({
       Icon: () => (
         <img
           src="/icons/sunrise.svg"
-          alt="Sunrise Icon"
-          style={{ width: '80px', height: 'auto' }} 
+          alt="Amanecer"
+          className="w-24 h-auto"
         />
       ),
       title: 'Amanecer',
@@ -76,8 +78,8 @@ const TempAndDetails = ({
       Icon: () => (
         <img
           src="/icons/sunset.svg"
-          alt="Sunset Icon"
-          style={{ width: '80px', height: 'auto' }} 
+          alt="Atardecer"
+          className="w-24 h-auto"
         />
       ),
       title: 'Atardecer',
@@ -88,8 +90,8 @@ const TempAndDetails = ({
       Icon: () => (
         <img
           src="/icons/thermometer-warmer.svg"
-          alt="Temperature Max Icon"
-          style={{ width: '80px', height: 'auto' }} 
+          alt="Temperatura Max."
+          className="w-24 h-auto"
         />
       ),
       title: 'Temperatura Max.',
@@ -100,8 +102,8 @@ const TempAndDetails = ({
       Icon: () => (
         <img
           src="/icons/thermometer-colder.svg"
-          alt="Temperature Min Icon"
-          style={{ width: '80px', height: 'auto' }} 
+          alt="Temperatura Min."
+          className="w-24 h-auto"
         />
       ),
       title: 'Temperatura Min.',
@@ -111,34 +113,34 @@ const TempAndDetails = ({
 
   return (
     <div>
-      <div className="flex items-center justify-center py-6 text-xl text-black-300">
+      <div className="text-center py-6 text-3xl text-white">
         <p>{details}</p>
       </div>
-      <div className="flex flex-row items-center justify-between py-3">
-        <div className="flex items-center ml-80" style={{ gap: '175px' }}>
+      <div className="flex flex-col sm:flex-row items-center justify-center py-3">
+        <div className="flex flex-col sm:flex-row items-center gap-4">
           <img
             src={icon}
             alt="Weather Icon"
-            style={{ width: '200px', height: '200px' }} // Ajusta el tamaño del ícono de clima principal aquí
+            className="w-40 h-auto"
           />
-          <p className="text-9xl">{`${temp.toFixed()}°`}</p>
+          <p className="text-6xl sm:text-9xl text-white">{`${temp.toFixed()}°`}</p>
         </div>
 
-        <div className="flex flex-col space-y-3 items-start ml-2 bg-black bg-opacity-20 p-4 rounded-lg shadow">
+        <div className="flex flex-col space-y-3 items-start ml-8 bg-[rgba(255,255,255,0.3)] p-4 rounded-lg shadow">
           {verticalDetails.map(({ id, Icon, title, value }) => (
-            <div key={id} className="flex font-light text-sm items-center">
-              <Icon className="mr-2" />
+            <div key={id} className="flex items-center space-x-2 text-black">
+              <Icon />
               <span className="text-lg">{`${title}: ${value}`}</span>
             </div>
           ))}
         </div>
       </div>
 
-      <div className="flex items-center justify-center space-x-4 text-sm py-3 bg-black bg-opacity-20 p-4 rounded-lg shadow max-w-50 mx-auto" style={{ width: '700px', margin: '0 auto' }}>
+      <div className="flex flex-wrap justify-center gap-2 text-base py-3 bg-[rgba(255,255,255,0.3)]  p-1 rounded-lg shadow mx-auto max-w-[80%]">
         {horizontalDetails.map(({ id, Icon, title, value }) => (
-          <div key={id} className="flex font-light text-sm items-center">
+          <div key={id} className="flex font-light items-center text-lg text-black">
             <Icon className="mr-2" />
-            <span className="text-lg">{`${title}: ${value}`}</span>
+            <span className="text-xl">{`${title}: ${value}`}</span>
           </div>
         ))}
       </div>
